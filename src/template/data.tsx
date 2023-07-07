@@ -1,4 +1,129 @@
-import Node from './node';
+import React from 'react';
+import { Node } from '@/graph/CompactBoxTree';
+// import Label from './label.js';
+
+import { Label } from '@/graph/label';
+
+const endpoints = [
+  {
+    id: 'top',
+    orientation: [0, 0],
+    pos: [0.5, 0],
+
+  },
+  {
+    id: 'bottom',
+    orientation: [0, 1],
+    pos: [0.5, 0],
+  }
+];
+
+const getEndpointsByRoot = (isRoot: boolean) => isRoot ?  [endpoints[1]] : endpoints;
+
+const startTypes = {
+  type: "Starter",
+  text: "发起人",
+  color: "#576792",
+  icon: "icon-account",
+}
+
+const types = {
+  type: "fork",
+  text: "条件分支",
+  color: "#5fb3a0",
+  icon: "icon-tree"
+}
+
+const data = {
+  nodes: [
+    {
+      id: '1',
+      isRoot: true,
+      endpoints: getEndpointsByRoot(true),
+      left: 500,
+      top: 50,
+      render() {
+        return (
+          <Node {...startTypes} />
+        );
+      }
+    },
+    {
+      id: '2',
+      endpoints: getEndpointsByRoot(false),
+      left: 500,
+      top: 200,
+      render() {
+        return (
+          <Node
+            {...types}
+          />
+        );
+      }
+    },
+  ],
+  edges: [
+    {
+      id: '1-2',
+      sourceNode: '1',
+      targetNode: '2',
+      source: 'bottom',
+      target: 'top',
+      shapeType: 'Straight',
+      arrow: true,
+      defaultAnimate: true,
+      arrowPosition: 1,
+      labelRender() {
+        // return <Label />
+      }
+    }
+  ],
+  onCreateEdge: (e: any) => {  console.log(e, 'edge') }
+};
+
+
+// const data = {
+//   nodes: [
+//     {
+//       isRoot: true,
+//       id: 'Root',
+//       left: 200,
+//       top: 20,
+//       endpoints: endpoints,
+//       render() {
+//         return (
+//           <Node {...types} />
+//         );
+//       },
+//       children: [
+//         {
+//           id: 'child1',
+//           endpoints: endpoints,
+//           render() {
+//             return (
+//               <Node {...types} />
+//             );
+//           },
+//         }
+//       ]
+//     },
+//   ],
+//   edges: [
+//     {
+//       id: '1-2',
+//       sourceNode: 'Root',
+//       targetNode: 'child1',
+//       source: 'top',
+//       target: 'bottom',
+//       shapeType: 'Bezier',
+//       labelRender() {
+//         return <Label />
+//       }
+//     }
+//   ],
+// };
+
+export default data;
 
 const mockData = {
   nodes: {
@@ -7,7 +132,7 @@ const mockData = {
     title: '根节点',
     content: 'root',
     iconClass: 'icon-class',
-    iconType: 'icon-tree',
+    iconType: 'icon-shujuji',
     Class: Node,
     endpoints: [{
       id: '1',
@@ -20,7 +145,7 @@ const mockData = {
       title: '子节点 1',
       content: 'sub node 1',
       // collapsed: true,
-      iconType: 'icon-tree',
+      iconType: 'icon-guize-kai',
       iconClass: 'icon-class',
       endpoints: [{
         id: '1',
@@ -36,7 +161,7 @@ const mockData = {
         Class: Node,
         title: '子节点 1-1',
         content: 'sub node 1-1',
-        iconType: 'icon-tree',
+        iconType: 'icon-guize-kai',
         iconClass: 'icon-class',
         endpoints: [{
           id: '1',
@@ -52,7 +177,7 @@ const mockData = {
         Class: Node,
         title: '子节点 1-2',
         content: 'sub node 1-2',
-        iconType: 'icon-tree',
+        iconType: 'icon-guize-kai',
         iconClass: 'icon-class',
         endpoints: [{
           id: '1',
@@ -69,7 +194,7 @@ const mockData = {
       Class: Node,
       title: '子节点 2',
       content: 'sub node 2',
-      iconType: 'icon-tree',
+      iconType: 'icon-guize-kai',
       iconClass: 'icon-class',
       // collapsed: true,
       endpoints: [{
@@ -86,7 +211,7 @@ const mockData = {
         Class: Node,
         title: '子节点 2-1',
         content: 'sub node 2-1',
-        iconType: 'icon-tree',
+        iconType: 'icon-guize-kai',
         iconClass: 'icon-class',
         endpoints: [{
           id: '1',
@@ -102,7 +227,7 @@ const mockData = {
         Class: Node,
         title: '子节点 2-2',
         content: 'sub node 2-2',
-        iconType: 'icon-tree',
+        iconType: 'icon-guize-kai',
         iconClass: 'icon-class',
         endpoints: [{
           id: '1',
@@ -119,7 +244,7 @@ const mockData = {
       Class: Node,
       title: '子节点 3',
       content: 'sub node 3',
-      iconType: 'icon-tree',
+      iconType: 'icon-guize-kai',
       iconClass: 'icon-class',
       endpoints: [{
         id: '1',
@@ -183,5 +308,3 @@ const mockData = {
     type: 'endpoint'
   }]
 };
-
-export default mockData;

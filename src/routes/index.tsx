@@ -1,14 +1,14 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-import App from '../App';
+// import App from '';
+import { Home } from '@/home';
 import NotFound404 from '../404Page';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    errorElement: <NotFound404 />,
+    element: <Home />,
     children: [
     ]
   },

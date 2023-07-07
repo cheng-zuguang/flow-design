@@ -19,8 +19,8 @@
     "jsx": "react-jsx",
     "outDir": ".",
     "paths": {
-      "@src": ["src"],
-      "@src/*": ["src/*"]
+      "@": ["src"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["./src"],
