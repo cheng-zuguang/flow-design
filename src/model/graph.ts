@@ -1,11 +1,12 @@
 export interface NodeType {
+  id?: string;
   type: string;
   color: string;
   text: string;
   icon: string;
   isRoot?: boolean;
   isDrag?: boolean;
-  onClick?: (data: NodeType) => void;
+  onClick?: (isClick: boolean, data: NodeType) => void;
   dragStartTrigger?: (data: NodeType) => void;
 }
 
@@ -58,7 +59,7 @@ export interface Edge {
   orientationLimit?: PosLimit[];
   shapeType?: ShapeType;
   hasRadius?: boolean;
-  labelRender: () => JSX.Element;
+  labelRender?: () => JSX.Element;
   labelPosition?: number;
   labelOffset?: number;
   arrow?: boolean;

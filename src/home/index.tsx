@@ -14,7 +14,7 @@ export const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <Row style={{ height: '100%' }} gutter={12}>
+      <Row style={{ height: '100%', margin: 0 }} gutter={12}>
         <Col id="side-bar-container" xs={0} sm={0} md={10} lg={6} xl={6}>
           <SideBar selectNodeType={(nodeType) => setCurrentSelectNodeType(nodeType)} />
         </Col>
